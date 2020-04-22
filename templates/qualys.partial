@@ -1,0 +1,12 @@
+# install wget
+yum install wget -y
+
+# download an rpm package from source and save it in the folder under the output name
+wget --output-document=qualys-cloud-agent.x86_64.rpm ${qualys_download_url}
+
+# install the package as sudoer using the RPM command
+sudo rpm -ivh qualys-cloud-agent.x86_64.rpm
+
+# run the agent installation as a service command as sudoer
+# you need to pass to this command the correct ActivationId and CustomerId (they are provided by the security team)
+sudo /usr/local/qualys/cloud-agent/bin/qualys-cloud-agent.sh ActivationId=${qualys_activation_id} CustomerId=${qualys_customer_id}
